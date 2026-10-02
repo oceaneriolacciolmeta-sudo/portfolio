@@ -18,8 +18,8 @@ Déjà prévu : l'avant/après de l'affiche ERA, avec `images/avant-apres/era-av
 ## À personnaliser dans `index.html`
 
 - Ton e-mail : remplace `ton.email@exemple.com`.
-- Tes liens Instagram, Behance et LinkedIn (les `href="#"`).
-- Les chiffres (`data-count`) et les témoignages.
+- Ton lien Instagram (le `href="#"`).
+- Les chiffres (`data-count`).
 
 ## Voir le site
 
