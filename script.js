@@ -100,40 +100,46 @@
   // Miniatures
   const minis = P.miniatures || [];
   const miniItems = minis.map((m, i) => ({ html: media(m.src, m.title, m.client, i), caption: `${m.title} · ${m.client}`, ratio: ratios.miniatures }));
-  // big framed slider for the YouTube thumbnails (full 16:9, no cropping)
-  const ms = $('[data-slider="miniatures"]');
-  if (ms && minis.length) {
-    ms.innerHTML = `
+  // ---------- Big framed slider (reused for miniatures, carrousels, statiques) ----------
+  // items: [{ src, title, client }] · opts: { ratio, label, thumbs, caption(i), onOpen(i) }
+  function makeSlider(root, items, opts = {}) {
+    if (!root || !items.length) return;
+    const label = opts.label || "Visuel";
+    root.classList.add("mini-slider");
+    root.style.setProperty("--ratio", opts.ratio || "16 / 9");
+    root.innerHTML = `
       <div class="mini-slider__frame">
-        <div class="mini-slider__screen">${minis.map((m, i) => `<div class="mini-slider__slide" data-i="${i}">${media(m.src, m.title, m.client, i)}</div>`).join("")}</div>
-        <button class="mini-slider__arrow mini-slider__arrow--prev" aria-label="Miniature précédente">←</button>
-        <button class="mini-slider__arrow mini-slider__arrow--next" aria-label="Miniature suivante">→</button>
-        <div class="mini-slider__dots">${minis.map((_, i) => `<button aria-label="Miniature ${i + 1}"></button>`).join("")}</div>
+        <div class="mini-slider__screen">${items.map((m, i) => `<div class="mini-slider__slide">${media(m.src, m.title, m.client, i)}</div>`).join("")}</div>
+        ${items.length > 1 ? `
+        <button class="mini-slider__arrow mini-slider__arrow--prev" aria-label="${label} précédent">←</button>
+        <button class="mini-slider__arrow mini-slider__arrow--next" aria-label="${label} suivant">→</button>
+        <div class="mini-slider__dots">${items.map((_, i) => `<button aria-label="${label} ${i + 1}"></button>`).join("")}</div>` : ""}
       </div>
       <div class="mini-slider__caption"><b></b><span></span></div>
-      <div class="mini-slider__thumbs">${minis.map((m, i) => `<button aria-label="${m.title}">${media(m.src, m.title, m.client, i)}</button>`).join("")}</div>`;
-    const slides = [...ms.querySelectorAll(".mini-slider__slide")];
-    const dots = [...ms.querySelectorAll(".mini-slider__dots button")];
-    const thumbs = [...ms.querySelectorAll(".mini-slider__thumbs button")];
+      ${opts.thumbs === false ? "" : `<div class="mini-slider__thumbs">${items.map((m, i) => `<button aria-label="${m.title}">${media(m.src, m.title, m.client, i)}</button>`).join("")}</div>`}`;
+    const slides = [...root.querySelectorAll(".mini-slider__slide")];
+    const dots = [...root.querySelectorAll(".mini-slider__dots button")];
+    const thumbs = [...root.querySelectorAll(".mini-slider__thumbs button")];
     let cur = 0;
     const show = (i) => {
-      cur = (i + minis.length) % minis.length;
+      cur = (i + items.length) % items.length;
       slides.forEach((el, k) => el.classList.toggle("is-active", k === cur));
       dots.forEach((el, k) => el.classList.toggle("is-active", k === cur));
       thumbs.forEach((el, k) => el.classList.toggle("is-active", k === cur));
-      $(".mini-slider__caption b", ms).textContent = minis[cur].title;
-      $(".mini-slider__caption span", ms).textContent = `${minis[cur].client} · ${String(cur + 1).padStart(2, "0")} / ${String(minis.length).padStart(2, "0")}`;
-      const t = thumbs[cur], strip = t.parentElement;
-      strip.scrollTo({ left: t.offsetLeft - strip.clientWidth / 2 + t.clientWidth / 2, behavior: "smooth" });
+      const [title, sub] = opts.caption ? opts.caption(cur) : [items[cur].title, items[cur].client];
+      $(".mini-slider__caption b", root).textContent = title;
+      $(".mini-slider__caption span", root).textContent = `${sub} · ${String(cur + 1).padStart(2, "0")} / ${String(items.length).padStart(2, "0")}`;
+      const t = thumbs[cur];
+      if (t) t.parentElement.scrollTo({ left: t.offsetLeft - t.parentElement.clientWidth / 2 + t.clientWidth / 2, behavior: "smooth" });
     };
-    $(".mini-slider__arrow--prev", ms).onclick = () => show(cur - 1);
-    $(".mini-slider__arrow--next", ms).onclick = () => show(cur + 1);
+    const prev = $(".mini-slider__arrow--prev", root), next = $(".mini-slider__arrow--next", root);
+    if (prev) prev.onclick = () => show(cur - 1);
+    if (next) next.onclick = () => show(cur + 1);
     dots.forEach((d, i) => (d.onclick = () => show(i)));
     thumbs.forEach((t, i) => (t.onclick = () => show(i)));
-    $(".mini-slider__screen", ms).addEventListener("click", () => lbOpen(miniItems, cur));
-    // swipe on touch screens
-    let x0 = null;
-    const screen = $(".mini-slider__screen", ms);
+    const screen = $(".mini-slider__screen", root);
+    if (opts.onOpen) screen.addEventListener("click", () => opts.onOpen(cur));
+    let x0 = null; // swipe on touch screens
     screen.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; }, { passive: true });
     screen.addEventListener("touchend", (e) => {
       if (x0 === null) return;
@@ -143,21 +149,35 @@
     show(0);
   }
 
-  // Carrousels: cover = first slide; opening shows every slide of that carrousel
-  const caros = P.carrousels || [];
-  const caroCovers = caros.map((c, i) => ({ html: media(c.slides[0], c.title, c.client, i + 1), badge: `${c.slides.length} slides` }));
-  coverflow($('[data-flow="carrousels"]'), caroCovers, (i) => {
-    const c = caros[i];
-    lbOpen(c.slides.map((src, s) => ({
-      html: media(src, s === 0 ? c.title : `Slide ${s + 1}`, c.client, i + 1 + s),
-      caption: `${c.title} · ${c.client}`, ratio: ratios.carrousels,
-    })), 0);
-  });
+  // Miniatures : big 16:9 slider with thumbnail strip
+  makeSlider($('[data-slider="miniatures"]'), minis, { ratio: "16 / 9", label: "Miniature", onOpen: (i) => lbOpen(miniItems, i) });
 
-  // Posts statiques
+  // Carrousels : Instagram-size 4:5 slider of the selected carrousel + carrousel picker
+  const caros = P.carrousels || [];
+  const caroWrap = $('[data-caro]');
+  if (caroWrap && caros.length) {
+    caroWrap.innerHTML = `<div class="caro-slider"></div>
+      <div class="caro-picker">${caros.map((c, i) => `<button aria-label="${c.title}">${media(c.slides[0], c.title, c.client, i + 1)}<span>${c.slides.length} slides</span></button>`).join("")}</div>`;
+    const picks = [...caroWrap.querySelectorAll(".caro-picker button")];
+    const pick = (ci) => {
+      const c = caros[ci];
+      const items = c.slides.map((src, s) => ({ src, title: c.title, client: c.client }));
+      const lbItems = items.map((it, s) => ({ html: media(it.src, it.title, it.client, s), caption: `${c.title} · ${c.client}`, ratio: ratios.carrousels }));
+      makeSlider($(".caro-slider", caroWrap), items, {
+        ratio: "4 / 5", label: "Slide", thumbs: false,
+        caption: (s) => [c.title, `Slide`],
+        onOpen: (s) => lbOpen(lbItems, s),
+      });
+      picks.forEach((b, k) => b.classList.toggle("is-active", k === ci));
+    };
+    picks.forEach((b, i) => (b.onclick = () => pick(i)));
+    pick(0);
+  }
+
+  // Posts statiques : Instagram-size 4:5 slider
   const stats = P.statiques || [];
   const statItems = stats.map((m, i) => ({ html: media(m.src, m.title, m.client, i + 3), caption: `${m.title} · ${m.client}`, ratio: "4 / 5" }));
-  coverflow($('[data-flow="statiques"]'), statItems, (i) => lbOpen(statItems, i));
+  makeSlider($('[data-slider="statiques"]'), stats, { ratio: "4 / 5", label: "Post", onOpen: (i) => lbOpen(statItems, i) });
 
   // Affiches
   const affs = P.affiches || [];
