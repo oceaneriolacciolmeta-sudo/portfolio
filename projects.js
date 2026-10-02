@@ -5,66 +5,87 @@
 
   1. Dépose tes images dans le dossier images/ (miniatures,
      carrousels, statiques, affiches, avant-apres).
+     Le format .webp est conseillé (plus léger), mais .jpg et .png marchent aussi.
   2. Renseigne le chemin dans "src" (ou "slides" pour un carrousel,
      "avant" / "apres" pour la section Avant / Après).
-     Exemple : src: "images/miniatures/sport.jpg"
-  3. Tant qu'un chemin est vide, un visuel vert amande provisoire s'affiche.
+  3. Si une image est introuvable, un visuel vert amande provisoire s'affiche.
   ============================================================
 */
 window.PROJECTS = {
-  // Format 16:9 (1280x720 conseillé)
+  // Miniatures YouTube, format 16:9 (1280x720)
   miniatures: [
-    { title: "J'ai testé 100 jours de sport", client: "Chaîne fitness", src: "" },
-    { title: "Le setup gaming ultime", client: "Chaîne tech", src: "" },
-    { title: "Paris en 24h", client: "Vlog voyage", src: "" },
-    { title: "Je cuisine comme un chef étoilé", client: "Chaîne cuisine", src: "" },
-    { title: "Le secret des millionnaires", client: "Chaîne finance", src: "" },
-    { title: "Réaction au clip de l'année", client: "Chaîne musique", src: "" },
+    { title: "Hamilton chez Ferrari", client: "Formule 1", src: "images/miniatures/f1-hamilton.webp" },
+    { title: "One Piece, tous les détails cachés", client: "Pop culture", src: "images/miniatures/one-piece.webp" },
+    { title: "007 First Light", client: "Jeu vidéo", src: "images/miniatures/007-first-light.webp" },
+    { title: "Dans l'enfer des goulags", client: "Histoire", src: "images/miniatures/goulags.webp" },
+    { title: "Kraken", client: "Documentaire", src: "images/miniatures/kraken.webp" },
+    { title: "Pau Gasol", client: "Basket", src: "images/miniatures/pau-gasol.webp" },
+    { title: "Morad", client: "Musique", src: "images/miniatures/morad.webp" },
+    { title: "Le Petit Prince", client: "Littérature", src: "images/miniatures/petit-prince.webp" },
+    { title: "Pokémon Geographic", client: "Pop culture", src: "images/miniatures/pokemon-geographic.webp" },
+    { title: "Milei", client: "Politique", src: "images/miniatures/milei.webp" },
+    { title: "Qui vous ment ?", client: "Interview", src: "images/miniatures/qui-vous-ment.webp" },
+    { title: "La Roja 2010", client: "Football", src: "images/miniatures/la-roja-2010.webp" },
   ],
 
-  // Format 4:5 (1080x1350 conseillé) : une liste d'images par carrousel
+  // Carrousels Instagram, format 4:5 (1080x1350) : une liste d'images par carrousel
   carrousels: [
-    { title: "5 erreurs en design", client: "Marque perso", slides: ["", "", "", "", ""] },
-    { title: "Lancement produit", client: "Startup beauté", slides: ["", "", "", ""] },
-    { title: "Guide nutrition", client: "Coach sportif", slides: ["", "", "", "", "", ""] },
+    {
+      title: "3 erreurs dans ta com'",
+      client: "Conseils réseaux sociaux",
+      slides: [1, 2, 3, 4, 5].map((n) => `images/carrousels/erreurs-com/${n}.webp`),
+    },
+    {
+      title: "Partir, c'est vivre",
+      client: "Lifestyle nomade",
+      slides: [1, 2, 3, 4].map((n) => `images/carrousels/partir-cest-vivre/${n}.webp`),
+    },
+    {
+      title: "Journée mondiale du bonheur",
+      client: "Bien-être",
+      slides: [1, 2, 3, 4, 5].map((n) => `images/carrousels/journee-bonheur/${n}.webp`),
+    },
+    {
+      title: "Une journée avec moi",
+      client: "Lifestyle",
+      slides: [1, 2, 3, 4].map((n) => `images/carrousels/journee-avec-moi/${n}.webp`),
+    },
+    {
+      title: "Série personal branding",
+      client: "Coach marketing",
+      slides: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => `images/carrousels/personal-branding/${n}.webp`),
+    },
   ],
 
-  // Posts statiques Instagram, une seule image (4:5, 1080x1350 conseillé)
-  statiques: [
-    { title: "Annonce de lancement", client: "Marque beauté", src: "" },
-    { title: "Citation inspirante", client: "Coach", src: "" },
-    { title: "Promo -20 %", client: "Boutique", src: "" },
-    { title: "Événement à venir", client: "Association", src: "" },
-  ],
+  // Posts statiques Instagram, une seule image (4:5, 1080x1350)
+  statiques: [2, 3, 4, 5, 7, 8].map((n) => ({
+    title: "Panda Tea",
+    client: "Morning Boost",
+    src: `images/statiques/panda-tea-${n}.webp`,
+  })),
 
-  // Format affiche (2:3 conseillé, ex. 1200x1800)
+  // Affiches et visuels produit, format vertical 9:16 (1080x1920)
   affiches: [
-    { title: "Festival Nuit Lilas", client: "Événement", src: "" },
-    { title: "Concert, tournée 2026", client: "Musique", src: "" },
-    { title: "Expo Formes Douces", client: "Galerie", src: "" },
-    { title: "Soirée étudiante", client: "BDE", src: "" },
-    { title: "Campagne Printemps", client: "Mode", src: "" },
-    { title: "Affiche typographique", client: "Projet perso", src: "" },
+    { title: "Jack Daniel's Honey", client: "Visuel produit", src: "images/affiches/jack-daniels-honey.webp" },
+    { title: "Monster Energy", client: "Visuel produit", src: "images/affiches/monster.webp" },
+    { title: "Absolut Vodka", client: "Visuel produit", src: "images/affiches/absolut.webp" },
+    { title: "Ballantine's", client: "Visuel produit", src: "images/affiches/ballantines.webp" },
+    { title: "Red Bull", client: "Visuel produit", src: "images/affiches/red-bull.webp" },
+    { title: "Grey Goose", client: "Visuel produit", src: "images/affiches/grey-goose.webp" },
+    { title: "Jack Daniel's Apple", client: "Visuel produit", src: "images/affiches/jack-daniels-apple.webp" },
   ],
 
-  // AVANT / APRÈS : "avant" = photo brute, "apres" = visuel final.
-  // Les deux images d'une paire doivent avoir le même format.
+  // AVANT / APRÈS : "avant" = support d'origine, "apres" = visuel final.
+  // Un onglet sans paire complète est masqué automatiquement.
   avantApres: {
-    miniatures: [ // 16:9
-      { title: "J'ai testé 100 jours de sport", client: "Chaîne fitness", avant: "", apres: "" },
-      { title: "Le setup gaming ultime", client: "Chaîne tech", avant: "", apres: "" },
-      { title: "Paris en 24h", client: "Vlog voyage", avant: "", apres: "" },
-    ],
-    affiches: [ // format A4 (ex. 1414x2000)
+    miniatures: [], // 16:9
+    affiches: [
       {
         title: "Flyer conseillère immobilière",
         client: "ERA Immobilier Lucciana",
-        avant: "images/avant-apres/era-avant.png",
-        apres: "images/avant-apres/era-apres.png",
+        avant: "images/avant-apres/era-avant.webp",
+        apres: "images/avant-apres/era-apres.webp",
       },
-      { title: "Festival Nuit Lilas", client: "Événement", avant: "", apres: "" },
-      { title: "Concert, tournée 2026", client: "Musique", avant: "", apres: "" },
-      { title: "Campagne Printemps", client: "Mode", avant: "", apres: "" },
     ],
   },
 };

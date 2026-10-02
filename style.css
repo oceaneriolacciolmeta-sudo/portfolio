@@ -208,7 +208,7 @@ a { color: inherit; text-decoration: none; }
 .coverflow__stage { position: relative; height: var(--h); }
 .coverflow--wide { --w: min(360px, 68vw); --h: calc(var(--w) * 9 / 16); }
 .coverflow--square { --w: min(250px, 56vw); --h: calc(var(--w) * 5 / 4); }
-.coverflow--tall { --w: min(240px, 54vw); --h: calc(var(--w) * 3 / 2); }
+.coverflow--tall { --w: min(230px, 52vw); --h: calc(var(--w) * 16 / 9); }
 .cf-item {
   position: absolute; top: 0; left: 50%; width: var(--w); height: 100%; margin-left: calc(var(--w) / -2);
   border-radius: 14px; overflow: hidden; cursor: pointer; background: var(--amande-200);
@@ -247,6 +247,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ---------- Avant / Après ---------- */
 .section__sub { max-width: 560px; margin: -2rem auto 2rem; text-align: center; color: var(--ink-soft); font-weight: 300; }
+[hidden] { display: none !important; }
 .ba-tabs {
   display: flex; width: max-content; margin: 0 auto 2rem; padding: 5px; gap: 4px; border-radius: 999px;
   background: rgba(255, 255, 255, .8); border: 1px solid var(--white); box-shadow: var(--shadow);

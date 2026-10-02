@@ -21,7 +21,7 @@
   // ---------- Lightbox (works on a list of items) ----------
   const lb = $("#lightbox"), stage = $(".lightbox__stage", lb), caption = $(".lightbox__caption", lb);
   let lbItems = [], lbIndex = 0;
-  const ratios = { miniatures: "16 / 9", carrousels: "4 / 5", affiches: "2 / 3" };
+  const ratios = { miniatures: "16 / 9", carrousels: "4 / 5", affiches: "9 / 16" };
 
   function lbShow(i) {
     lbIndex = (i + lbItems.length) % lbItems.length;
@@ -150,6 +150,7 @@
       ba.dataset.tab = t;
       viewer.style.aspectRatio = baRatio[t];
       document.querySelectorAll("[data-ba-tab]").forEach((b) => b.classList.toggle("is-active", b.dataset.baTab === t));
+      thumbs.hidden = (BA[t] || []).length < 2;
       thumbs.innerHTML = (BA[t] || []).map((it, i) =>
         `<button aria-label="${it.title}">${it.apres ? `<img src="${it.apres}" alt="" loading="lazy" />` : `<span class="placeholder pg-${(i + (t === "affiches" ? 2 : 0)) % 6}"></span>`}</button>`).join("");
       [...thumbs.children].forEach((b, i) => b.addEventListener("click", () => load(i)));
@@ -157,7 +158,14 @@
     }
     range.addEventListener("input", () => setPos(range.value));
     document.querySelectorAll("[data-ba-tab]").forEach((b) => b.addEventListener("click", () => setTab(b.dataset.baTab)));
-    setTab("miniatures");
+    // only keep tabs that have at least one complete before/after pair
+    for (const k of Object.keys(BA)) BA[k] = (BA[k] || []).filter((it) => it.avant && it.apres);
+    const tabs = [...document.querySelectorAll("[data-ba-tab]")];
+    tabs.forEach((b) => { b.hidden = !BA[b.dataset.baTab].length; });
+    const available = tabs.filter((b) => !b.hidden).map((b) => b.dataset.baTab);
+    $(".ba-tabs").hidden = available.length < 2;
+    if (available.length) setTab(available[0]);
+    else document.getElementById("avant-apres").hidden = true;
 
     // small hint animation the first time the slider is visible
     const hint = new IntersectionObserver(([en]) => {
