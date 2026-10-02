@@ -210,11 +210,23 @@
     const p = Math.min((t - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3);
     bar.style.transform = `scaleX(${e})`; pct.textContent = `${Math.round(e * 100)}%`;
     if (p < 1) return requestAnimationFrame(tick);
-    setTimeout(() => { loader.classList.add("is-done"); document.body.classList.remove("is-loading"); startReveal(); }, 250);
+    setTimeout(finishLoading, 250);
   })(t0);
+  // safety net: never leave the page hidden, even if animation frames are paused
+  setTimeout(finishLoading, 2500);
+  let loaded = false;
+  function finishLoading() {
+    if (loaded) return;
+    loaded = true;
+    loader.classList.add("is-done");
+    document.body.classList.remove("is-loading");
+    startReveal();
+  }
 
   // ---------- Reveal on scroll + counters ----------
   function startReveal() {
+    // safety net: show everything if the observer never fires
+    setTimeout(() => document.querySelectorAll(".reveal").forEach((el) => el.classList.add("is-visible")), 2500);
     const io = new IntersectionObserver((entries) => entries.forEach((en) => {
       if (!en.isIntersecting) return;
       en.target.classList.add("is-visible"); io.unobserve(en.target);
