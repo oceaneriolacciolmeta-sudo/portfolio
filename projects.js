@@ -4,7 +4,7 @@
   ou retirer des visuels.
 
   1. Dépose tes images dans le dossier images/ (miniatures,
-     carrousels, affiches, avant-apres).
+     carrousels, statiques, affiches, avant-apres).
   2. Renseigne le chemin dans "src" (ou "slides" pour un carrousel,
      "avant" / "apres" pour la section Avant / Après).
      Exemple : src: "images/miniatures/sport.jpg"
@@ -27,6 +27,14 @@ window.PROJECTS = {
     { title: "5 erreurs en design", client: "Marque perso", slides: ["", "", "", "", ""] },
     { title: "Lancement produit", client: "Startup beauté", slides: ["", "", "", ""] },
     { title: "Guide nutrition", client: "Coach sportif", slides: ["", "", "", "", "", ""] },
+  ],
+
+  // Posts statiques Instagram, une seule image (4:5, 1080x1350 conseillé)
+  statiques: [
+    { title: "Annonce de lancement", client: "Marque beauté", src: "" },
+    { title: "Citation inspirante", client: "Coach", src: "" },
+    { title: "Promo -20 %", client: "Boutique", src: "" },
+    { title: "Événement à venir", client: "Association", src: "" },
   ],
 
   // Format affiche (2:3 conseillé, ex. 1200x1800)

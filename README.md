@@ -7,6 +7,7 @@ Portfolio d'Océane Riolacci Olmeta, graphiste en Corse. C'est un site statique 
 1. Dépose tes images dans `images/` :
    - `images/miniatures/` : 16:9 (1280×720)
    - `images/carrousels/` : 4:5 (1080×1350)
+   - `images/statiques/` : posts d'une seule image, 4:5 (1080×1350)
    - `images/affiches/` : 2:3 ou A4
    - `images/avant-apres/` : paires avant / après de même format
 2. Ouvre `projects.js` et renseigne les chemins (`src`, `slides`, `avant`, `apres`).

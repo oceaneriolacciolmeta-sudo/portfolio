@@ -113,6 +113,11 @@
     })), 0);
   });
 
+  // Posts statiques
+  const stats = P.statiques || [];
+  const statItems = stats.map((m, i) => ({ html: media(m.src, m.title, m.client, i + 3), caption: `${m.title} — ${m.client}`, ratio: "4 / 5" }));
+  coverflow($('[data-flow="statiques"]'), statItems, (i) => lbOpen(statItems, i));
+
   // Affiches
   const affs = P.affiches || [];
   const affItems = affs.map((a, i) => ({ html: media(a.src, a.title, a.client, i + 2), caption: `${a.title} — ${a.client}`, ratio: ratios.affiches }));
