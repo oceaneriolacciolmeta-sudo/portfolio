@@ -82,16 +82,16 @@ window.PROJECTS = {
   avantApres: {
     miniatures: [ // 16:9
       {
-        title: "Milei",
-        client: "Du croquis à la miniature",
-        avant: "images/avant-apres/milei-avant.webp",
-        apres: "images/avant-apres/milei-apres.webp",
-      },
-      {
         title: "MotoGP, l'Espagne",
         client: "Du croquis à la miniature",
         avant: "images/avant-apres/moto-gp-avant.webp",
         apres: "images/avant-apres/moto-gp-apres.webp",
+      },
+      {
+        title: "Milei",
+        client: "Du croquis à la miniature",
+        avant: "images/avant-apres/milei-avant.webp",
+        apres: "images/avant-apres/milei-apres.webp",
       },
     ],
     affiches: [
