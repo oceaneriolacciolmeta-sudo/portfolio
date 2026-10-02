@@ -144,7 +144,7 @@ a { color: inherit; text-decoration: none; }
 .showreel__dots button.is-active { width: 22px; background: var(--accent); }
 
 /* ---------- Présentation ---------- */
-.presentation { padding: 8rem 16px 4rem; text-align: center; }
+.presentation { padding: 6rem 16px 3rem; text-align: center; }
 .presentation__photo { position: relative; z-index: 2; width: min(300px, 70vw); margin: 0 auto -3.5rem; }
 .presentation__photo img { width: 100%; -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent); mask-image: linear-gradient(180deg, #000 70%, transparent); }
 .portrait { display: block; width: 100%; object-fit: cover; object-position: center 20%; }
@@ -169,7 +169,7 @@ a { color: inherit; text-decoration: none; }
 .arc { position: absolute; left: -6%; width: 112%; top: 52%; height: 32%; overflow: visible; }
 .arc path { fill: none; stroke: var(--ink-soft); stroke-width: 1; opacity: .6; vector-effect: non-scaling-stroke; }
 .arc__dot { position: absolute; left: 50%; top: calc(52% + 32% * .99); width: 18px; height: 18px; margin: -9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 6px rgba(47, 107, 79, .12); }
-.presentation__title { margin-top: 4rem; font-size: 1rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.presentation__title { margin-top: 0; font-size: 1rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 .presentation__text { max-width: 600px; margin: 1.2rem auto 0; color: var(--ink-soft); font-weight: 300; font-size: 1.02rem; }
 
 /* ---------- Stats ---------- */
