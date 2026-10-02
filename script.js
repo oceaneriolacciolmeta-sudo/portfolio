@@ -100,7 +100,19 @@
   // Miniatures
   const minis = P.miniatures || [];
   const miniItems = minis.map((m, i) => ({ html: media(m.src, m.title, m.client, i), caption: `${m.title} · ${m.client}`, ratio: ratios.miniatures }));
-  coverflow($('[data-flow="miniatures"]'), miniItems, (i) => lbOpen(miniItems, i));
+  // full-size grid (no cropping) for the YouTube thumbnails
+  const grid = $('[data-grid="miniatures"]');
+  if (grid) {
+    grid.innerHTML = minis.map((m, i) => `
+      <button class="thumb reveal" data-i="${i}" aria-label="${m.title}">
+        <span class="thumb__img">${media(m.src, m.title, m.client, i)}</span>
+        <span class="thumb__meta"><b>${m.title}</b><small>${m.client}</small></span>
+      </button>`).join("");
+    grid.addEventListener("click", (e) => {
+      const b = e.target.closest(".thumb");
+      if (b) lbOpen(miniItems, Number(b.dataset.i));
+    });
+  }
 
   // Carrousels: cover = first slide; opening shows every slide of that carrousel
   const caros = P.carrousels || [];
