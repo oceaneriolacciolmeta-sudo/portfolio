@@ -26,6 +26,8 @@ window.PROJECTS = {
     { title: "Milei", client: "Politique", src: "images/miniatures/milei.webp" },
     { title: "Qui vous ment ?", client: "Interview", src: "images/miniatures/qui-vous-ment.webp" },
     { title: "La Roja 2010", client: "Football", src: "images/miniatures/la-roja-2010.webp" },
+    { title: "MotoGP, l'Espagne", client: "Moto", src: "images/miniatures/moto-gp.webp" },
+    { title: "6 astuces pour apprendre l'espagnol", client: "Éducation", src: "images/miniatures/espagnol-astuces.webp" },
   ],
 
   // Carrousels Instagram, format 4:5 (1080x1350) : une liste d'images par carrousel
@@ -78,7 +80,20 @@ window.PROJECTS = {
   // AVANT / APRÈS : "avant" = support d'origine, "apres" = visuel final.
   // Un onglet sans paire complète est masqué automatiquement.
   avantApres: {
-    miniatures: [], // 16:9
+    miniatures: [ // 16:9
+      {
+        title: "Milei",
+        client: "Du croquis à la miniature",
+        avant: "images/avant-apres/milei-avant.webp",
+        apres: "images/avant-apres/milei-apres.webp",
+      },
+      {
+        title: "MotoGP, l'Espagne",
+        client: "Du croquis à la miniature",
+        avant: "images/avant-apres/moto-gp-avant.webp",
+        apres: "images/avant-apres/moto-gp-apres.webp",
+      },
+    ],
     affiches: [
       {
         title: "Flyer conseillère immobilière",
