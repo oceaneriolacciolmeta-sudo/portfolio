@@ -59,8 +59,8 @@ window.PROJECTS = {
       {
         title: "Flyer conseillère immobilière",
         client: "ERA Immobilier Lucciana",
-        avant: "images/avant-apres/era-avant.jpg",
-        apres: "images/avant-apres/era-apres.jpg",
+        avant: "images/avant-apres/era-avant.png",
+        apres: "images/avant-apres/era-apres.png",
       },
       { title: "Festival Nuit Lilas", client: "Événement", avant: "", apres: "" },
       { title: "Concert, tournée 2026", client: "Musique", avant: "", apres: "" },

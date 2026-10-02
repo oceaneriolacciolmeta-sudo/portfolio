@@ -13,7 +13,7 @@ Portfolio d'Océane Riolacci Olmeta, graphiste en Corse. C'est un site statique 
 2. Ouvre `projects.js` et renseigne les chemins (`src`, `slides`, `avant`, `apres`).
 3. Tant qu'un chemin est vide ou que le fichier n'existe pas, un visuel vert amande provisoire s'affiche.
 
-Déjà prévu : l'avant/après de l'affiche ERA, avec `images/avant-apres/era-avant.jpg` et `images/avant-apres/era-apres.jpg`.
+Déjà prévu : l'avant/après de l'affiche ERA, avec `images/avant-apres/era-avant.png` et `images/avant-apres/era-apres.png`.
 
 ## À personnaliser dans `index.html`
 
