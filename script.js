@@ -2,7 +2,7 @@
   const P = window.PROJECTS || {};
   const $ = (s, el = document) => el.querySelector(s);
 
-  // ---------- Media: real image or lavender placeholder ----------
+  // ---------- Media: real image or almond-green placeholder ----------
   function media(src, title, sub, i) {
     if (src) return `<img src="${src}" alt="${title}" loading="lazy" draggable="false" data-ph="${i % 6}" />`;
     return `<div class="placeholder pg-${i % 6}"><div>${title}<small>${sub}</small></div></div>`;

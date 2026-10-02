@@ -8,7 +8,7 @@
   2. Renseigne le chemin dans "src" (ou "slides" pour un carrousel,
      "avant" / "apres" pour la section Avant / Après).
      Exemple : src: "images/miniatures/sport.jpg"
-  3. Tant qu'un chemin est vide, un visuel lavande provisoire s'affiche.
+  3. Tant qu'un chemin est vide, un visuel vert amande provisoire s'affiche.
   ============================================================
 */
 window.PROJECTS = {
