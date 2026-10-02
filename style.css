@@ -147,6 +147,15 @@ a { color: inherit; text-decoration: none; }
 .presentation { padding: 8rem 16px 4rem; text-align: center; }
 .presentation__photo { position: relative; z-index: 2; width: min(300px, 70vw); margin: 0 auto -3.5rem; }
 .presentation__photo img { width: 100%; -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent); mask-image: linear-gradient(180deg, #000 70%, transparent); }
+.portrait { display: block; width: 100%; object-fit: cover; object-position: center 20%; }
+.portrait--fade {
+  aspect-ratio: 1 / 1.1; border-radius: 50% 50% 0 0 / 42% 42% 0 0;
+  -webkit-mask-image: linear-gradient(180deg, #000 62%, transparent 96%); mask-image: linear-gradient(180deg, #000 62%, transparent 96%);
+}
+.portrait--framed {
+  aspect-ratio: 4 / 5; border-radius: 170px 170px 24px 24px;
+  border: 7px solid transparent; background: var(--grad-soft) border-box; box-shadow: var(--shadow-strong);
+}
 .photo-ph {
   aspect-ratio: 1 / 1.05; border-radius: 50% 50% 18px 18px / 45% 45% 18px 18px;
   display: grid; place-items: center; align-content: center;

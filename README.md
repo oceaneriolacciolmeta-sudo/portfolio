@@ -19,7 +19,7 @@ Déjà prévu : l'avant/après de l'affiche ERA, avec `images/avant-apres/era-av
 
 - Ton e-mail : remplace `ton.email@exemple.com`.
 - Tes liens Instagram, Behance et LinkedIn (les `href="#"`).
-- Tes photos : `images/oceane.png` (section Présentation) et `images/oceane-2.png` (FAQ).
+- Ta photo : `images/oceane.webp` (sections Présentation et FAQ). Remplace le fichier pour la changer.
 - Les chiffres (`data-count`) et les témoignages.
 
 ## Voir le site
