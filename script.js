@@ -100,18 +100,47 @@
   // Miniatures
   const minis = P.miniatures || [];
   const miniItems = minis.map((m, i) => ({ html: media(m.src, m.title, m.client, i), caption: `${m.title} · ${m.client}`, ratio: ratios.miniatures }));
-  // full-size grid (no cropping) for the YouTube thumbnails
-  const grid = $('[data-grid="miniatures"]');
-  if (grid) {
-    grid.innerHTML = minis.map((m, i) => `
-      <button class="thumb reveal" data-i="${i}" aria-label="${m.title}">
-        <span class="thumb__img">${media(m.src, m.title, m.client, i)}</span>
-        <span class="thumb__meta"><b>${m.title}</b><small>${m.client}</small></span>
-      </button>`).join("");
-    grid.addEventListener("click", (e) => {
-      const b = e.target.closest(".thumb");
-      if (b) lbOpen(miniItems, Number(b.dataset.i));
+  // big framed slider for the YouTube thumbnails (full 16:9, no cropping)
+  const ms = $('[data-slider="miniatures"]');
+  if (ms && minis.length) {
+    ms.innerHTML = `
+      <div class="mini-slider__frame">
+        <div class="mini-slider__screen">${minis.map((m, i) => `<div class="mini-slider__slide" data-i="${i}">${media(m.src, m.title, m.client, i)}</div>`).join("")}</div>
+        <button class="mini-slider__arrow mini-slider__arrow--prev" aria-label="Miniature précédente">←</button>
+        <button class="mini-slider__arrow mini-slider__arrow--next" aria-label="Miniature suivante">→</button>
+        <div class="mini-slider__dots">${minis.map((_, i) => `<button aria-label="Miniature ${i + 1}"></button>`).join("")}</div>
+      </div>
+      <div class="mini-slider__caption"><b></b><span></span></div>
+      <div class="mini-slider__thumbs">${minis.map((m, i) => `<button aria-label="${m.title}">${media(m.src, m.title, m.client, i)}</button>`).join("")}</div>`;
+    const slides = [...ms.querySelectorAll(".mini-slider__slide")];
+    const dots = [...ms.querySelectorAll(".mini-slider__dots button")];
+    const thumbs = [...ms.querySelectorAll(".mini-slider__thumbs button")];
+    let cur = 0;
+    const show = (i) => {
+      cur = (i + minis.length) % minis.length;
+      slides.forEach((el, k) => el.classList.toggle("is-active", k === cur));
+      dots.forEach((el, k) => el.classList.toggle("is-active", k === cur));
+      thumbs.forEach((el, k) => el.classList.toggle("is-active", k === cur));
+      $(".mini-slider__caption b", ms).textContent = minis[cur].title;
+      $(".mini-slider__caption span", ms).textContent = `${minis[cur].client} · ${String(cur + 1).padStart(2, "0")} / ${String(minis.length).padStart(2, "0")}`;
+      const t = thumbs[cur], strip = t.parentElement;
+      strip.scrollTo({ left: t.offsetLeft - strip.clientWidth / 2 + t.clientWidth / 2, behavior: "smooth" });
+    };
+    $(".mini-slider__arrow--prev", ms).onclick = () => show(cur - 1);
+    $(".mini-slider__arrow--next", ms).onclick = () => show(cur + 1);
+    dots.forEach((d, i) => (d.onclick = () => show(i)));
+    thumbs.forEach((t, i) => (t.onclick = () => show(i)));
+    $(".mini-slider__screen", ms).addEventListener("click", () => lbOpen(miniItems, cur));
+    // swipe on touch screens
+    let x0 = null;
+    const screen = $(".mini-slider__screen", ms);
+    screen.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+    screen.addEventListener("touchend", (e) => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 40) show(cur + (dx < 0 ? 1 : -1));
     });
+    show(0);
   }
 
   // Carrousels: cover = first slide; opening shows every slide of that carrousel
