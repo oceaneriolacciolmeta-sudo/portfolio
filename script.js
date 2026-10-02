@@ -99,7 +99,7 @@
 
   // Miniatures
   const minis = P.miniatures || [];
-  const miniItems = minis.map((m, i) => ({ html: media(m.src, m.title, m.client, i), caption: `${m.title} — ${m.client}`, ratio: ratios.miniatures }));
+  const miniItems = minis.map((m, i) => ({ html: media(m.src, m.title, m.client, i), caption: `${m.title} · ${m.client}`, ratio: ratios.miniatures }));
   coverflow($('[data-flow="miniatures"]'), miniItems, (i) => lbOpen(miniItems, i));
 
   // Carrousels: cover = first slide; opening shows every slide of that carrousel
@@ -109,18 +109,18 @@
     const c = caros[i];
     lbOpen(c.slides.map((src, s) => ({
       html: media(src, s === 0 ? c.title : `Slide ${s + 1}`, c.client, i + 1 + s),
-      caption: `${c.title} — ${c.client}`, ratio: ratios.carrousels,
+      caption: `${c.title} · ${c.client}`, ratio: ratios.carrousels,
     })), 0);
   });
 
   // Posts statiques
   const stats = P.statiques || [];
-  const statItems = stats.map((m, i) => ({ html: media(m.src, m.title, m.client, i + 3), caption: `${m.title} — ${m.client}`, ratio: "4 / 5" }));
+  const statItems = stats.map((m, i) => ({ html: media(m.src, m.title, m.client, i + 3), caption: `${m.title} · ${m.client}`, ratio: "4 / 5" }));
   coverflow($('[data-flow="statiques"]'), statItems, (i) => lbOpen(statItems, i));
 
   // Affiches
   const affs = P.affiches || [];
-  const affItems = affs.map((a, i) => ({ html: media(a.src, a.title, a.client, i + 2), caption: `${a.title} — ${a.client}`, ratio: ratios.affiches }));
+  const affItems = affs.map((a, i) => ({ html: media(a.src, a.title, a.client, i + 2), caption: `${a.title} · ${a.client}`, ratio: ratios.affiches }));
   coverflow($('[data-flow="affiches"]'), affItems, (i) => lbOpen(affItems, i));
 
   // ---------- Avant / Après (comparison slider) ----------
