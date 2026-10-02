@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ORO Studio — Graphisme en Corse</title>
+  <meta name="description" content="ORO Studio, studio de graphisme d'Océane Riolacci Olmeta en Corse : miniatures YouTube, carrousels Instagram et affiches." />
+  <link rel="stylesheet" href="fonts/fonts.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Loader -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__glow"></div>
+    <p class="grunge loader__name">ORO</p>
+    <p class="loader__tag">Studio · Graphisme · Corse</p>
+    <div class="loader__bar"><span></span></div>
+    <div class="loader__meta"><span>Chargement</span><span id="loader-pct">0%</span></div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="nav">
+    <a href="#top" class="nav__logo">ORO <small>STUDIO</small></a>
+    <nav class="nav__links">
+      <a href="#realisations">Réalisations</a>
+      <a href="#avant-apres">Avant / Après</a>
+      <a href="#temoignages">Témoignages</a>
+      <a href="#process">Process</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="#contact" class="pill-btn pill-btn--grad pill-btn--sm">Me contacter</a>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <h1 class="hero__h1"><span class="grunge hero__name reveal">ORO</span><span class="hero__studio reveal">Studio</span></h1>
+      <span class="hero__rule reveal"></span>
+      <p class="hero__tag reveal">Le studio graphique qui fait cliquer ton audience.</p>
+      <div class="hero__cta reveal">
+        <a href="#realisations" class="pill-btn pill-btn--ghost">Réalisations <span>→</span></a>
+        <a href="#contact" class="pill-btn pill-btn--grad">Me contacter</a>
+      </div>
+      <div class="trust reveal">
+        <span class="avatars"><i></i><i></i><i></i><i></i></span>
+        <div><span class="stars">★★★★★</span><small>Ils m'ont fait confiance</small></div>
+      </div>
+
+      <!-- Showreel -->
+      <div class="showreel reveal" id="showreel">
+        <div class="showreel__screen"></div>
+        <div class="showreel__dots"></div>
+      </div>
+    </section>
+
+    <!-- Présentation -->
+    <section class="presentation" id="about">
+      <div class="presentation__photo reveal">
+        <!-- Remplace par ta photo : <img src="images/oceane.png" alt="Océane Riolacci Olmeta" /> -->
+        <div class="photo-ph">Ta photo<br /><small>images/oceane.png</small></div>
+      </div>
+      <div class="presentation__word" aria-hidden="true">
+        <span class="grunge grunge--faded">PRÉSENTATION</span>
+        <svg class="arc" viewBox="0 0 1000 120" preserveAspectRatio="none"><path d="M0 0 Q500 240 1000 0" /></svg>
+        <i class="arc__dot"></i>
+      </div>
+      <h2 class="presentation__title reveal">Miniatures, carrousels, affiches</h2>
+      <p class="presentation__text reveal">
+        Je suis Océane Riolacci Olmeta, graphiste en Corse et fondatrice d'ORO Studio. Je crée des visuels sur mesure
+        pour les créateurs, les marques et les événements : des miniatures qui font cliquer, des carrousels
+        qu'on lit jusqu'au bout et des affiches qui marquent. Chaque projet est pensé pour valoriser ton
+        identité, avec une vraie attention portée à la lisibilité et à l'esthétique.
+      </p>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+      <div class="reveal"><strong data-count="150" data-suffix="+">0</strong><span>Miniatures</span></div>
+      <div class="reveal"><strong data-count="60" data-suffix="+">0</strong><span>Carrousels</span></div>
+      <div class="reveal"><strong data-count="80" data-suffix="+">0</strong><span>Affiches</span></div>
+      <div class="reveal"><strong data-count="40" data-suffix="+">0</strong><span>Clients</span></div>
+    </section>
+
+    <!-- Réalisations -->
+    <section class="section" id="realisations">
+      <h2 class="section__title section__title--left reveal">Réalisations — Miniatures, Carrousels &amp; Affiches</h2>
+
+      <div class="work" id="miniatures">
+        <div class="coverflow coverflow--wide reveal" data-flow="miniatures"></div>
+        <div class="work__card reveal">
+          <p class="kicker">Miniatures YouTube</p>
+          <h3>Des miniatures qui donnent envie de cliquer</h3>
+          <p>Contraste, hiérarchie, émotion : chaque miniature est pensée pour ressortir dans le fil YouTube et faire grimper ton taux de clic, sur ordinateur comme sur mobile.</p>
+        </div>
+      </div>
+
+      <div class="work work--reverse" id="carrousels">
+        <div class="coverflow coverflow--square reveal" data-flow="carrousels"></div>
+        <div class="work__card reveal">
+          <p class="kicker">Carrousels Instagram</p>
+          <h3>Des carrousels qu'on lit jusqu'à la dernière slide</h3>
+          <p>Storytelling visuel, slides rythmées et identité cohérente pour des posts qui s'enregistrent et se partagent. Clique sur un carrousel pour le feuilleter.</p>
+        </div>
+      </div>
+
+      <div class="work" id="affiches">
+        <div class="coverflow coverflow--tall reveal" data-flow="affiches"></div>
+        <div class="work__card reveal">
+          <p class="kicker">Affiches &amp; graphisme</p>
+          <h3>Des affiches qui marquent les esprits</h3>
+          <p>Festivals, concerts, événements ou campagnes : des compositions fortes, pensées pour le print comme pour le digital.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Avant / Après -->
+    <section class="section" id="avant-apres">
+      <h2 class="section__title reveal">Avant / Après</h2>
+      <p class="section__sub reveal">Fais glisser le curseur pour voir la transformation, de la photo brute au visuel final.</p>
+      <div class="ba-tabs reveal" role="tablist">
+        <button class="is-active" data-ba-tab="miniatures" role="tab">Miniatures</button>
+        <button data-ba-tab="affiches" role="tab">Affiches</button>
+      </div>
+      <div class="ba reveal" id="ba">
+        <div class="ba__viewer">
+          <div class="ba__layer ba__after"></div>
+          <div class="ba__layer ba__before"></div>
+          <span class="ba__label ba__label--before">Avant</span>
+          <span class="ba__label ba__label--after">Après</span>
+          <div class="ba__handle" aria-hidden="true"><span>⟷</span></div>
+          <input class="ba__range" type="range" min="0" max="100" value="50" aria-label="Comparer avant et après" />
+        </div>
+        <div class="ba__info"><b class="ba__title"></b><span class="ba__client"></span></div>
+        <div class="ba__thumbs"></div>
+      </div>
+    </section>
+
+    <!-- Témoignages -->
+    <section class="section" id="temoignages">
+      <h2 class="section__title reveal">Témoignages clients</h2>
+      <div class="cards3">
+        <figure class="tcard reveal">
+          <span class="stars">★★★★★</span>
+          <blockquote>« Mon taux de clic est passé de 4 % à 9 % en deux mois. Océane comprend tout de suite ce qui va fonctionner. »</blockquote>
+          <figcaption><b>Prénom Nom</b><span>Youtubeur</span></figcaption>
+        </figure>
+        <figure class="tcard tcard--featured reveal">
+          <span class="stars">★★★★★</span>
+          <blockquote>« L'affiche de notre festival a fait le tour de l'île. Créative, à l'écoute et toujours dans les temps. »</blockquote>
+          <figcaption><b>Nom de l'association</b><span>Événement en Corse</span></figcaption>
+        </figure>
+        <figure class="tcard reveal">
+          <span class="stars">★★★★★</span>
+          <blockquote>« Des carrousels propres et cohérents avec ma marque. Mes posts n'ont jamais été autant enregistrés. »</blockquote>
+          <figcaption><b>Prénom Nom</b><span>Coach en ligne</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section class="section" id="process">
+      <h2 class="section__title reveal">Process</h2>
+      <div class="cards3">
+        <div class="tcard reveal">
+          <span class="num">01</span>
+          <h3>Échange &amp; brief</h3>
+          <p>On commence par discuter de tes objectifs, de ton audience et de ton univers. Pas de bon visuel sans un bon brief.</p>
+        </div>
+        <div class="tcard tcard--featured reveal">
+          <span class="num">02</span>
+          <h3>Création</h3>
+          <p>Recherche, composition, typographie et retouche. Je te propose une première version pensée pour ton format.</p>
+        </div>
+        <div class="tcard reveal">
+          <span class="num">03</span>
+          <h3>Retouches &amp; livraison</h3>
+          <p>On ajuste ensemble jusqu'au rendu parfait, puis je te livre les fichiers prêts à publier ou à imprimer.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section faq-wrap" id="faq">
+      <div class="faq">
+        <h2 class="faq__title reveal">Les questions qu'on <span class="grad-text">me pose</span> souvent.</h2>
+        <details class="reveal">
+          <summary>Quels sont tes délais de livraison ?</summary>
+          <p>Compte environ 48 h pour une miniature, 3 à 5 jours pour un carrousel et une semaine pour une affiche, selon la complexité du projet.</p>
+        </details>
+        <details class="reveal">
+          <summary>Combien de retouches sont incluses ?</summary>
+          <p>Deux allers-retours sont inclus pour chaque création, pour que le visuel te corresponde parfaitement.</p>
+        </details>
+        <details class="reveal">
+          <summary>Tu travailles uniquement en Corse ?</summary>
+          <p>Non : je suis basée en Corse, mais je travaille à distance avec des clients partout en France et à l'étranger.</p>
+        </details>
+        <details class="reveal">
+          <summary>Proposes-tu des formules mensuelles ?</summary>
+          <p>Oui, pour les créateurs qui publient régulièrement, je propose des packs mensuels de miniatures ou de carrousels.</p>
+        </details>
+      </div>
+      <div class="faq__photo reveal">
+        <div class="photo-ph photo-ph--tall">Ta photo<br /><small>images/oceane-2.png</small></div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="final" id="contact">
+      <span class="grunge grunge--faded final__bg" aria-hidden="true">ORO</span>
+      <div class="final__content">
+        <h2 class="reveal">On se lance ?</h2>
+        <p class="reveal">Parle-moi de ton projet, je te réponds sous 24 h.</p>
+        <a href="mailto:ton.email@exemple.com" class="pill-btn pill-btn--grad reveal">Démarrer un projet <span>↗</span></a>
+        <div class="socials reveal">
+          <a href="#" target="_blank" rel="noopener">Instagram</a>
+          <a href="#" target="_blank" rel="noopener">Behance</a>
+          <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <footer class="footer">
+        <span>© <span id="year"></span> ORO Studio · Océane Riolacci Olmeta · Corse</span>
+        <span><a href="#">Mentions légales</a><a href="#">Confidentialité</a></span>
+      </footer>
+    </section>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox__close" aria-label="Fermer">✕</button>
+    <button class="lightbox__nav lightbox__prev" aria-label="Précédent">←</button>
+    <div class="lightbox__stage"></div>
+    <button class="lightbox__nav lightbox__next" aria-label="Suivant">→</button>
+    <p class="lightbox__caption"></p>
+  </div>
+
+  <!-- SVG filter used for the grainy title texture -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <filter id="grain" x="-20%" y="-60%" width="140%" height="220%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" result="n" />
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -9 6.8" result="holes" />
+      <feComposite in="SourceGraphic" in2="holes" operator="in" />
+    </filter>
+  </svg>
+
+  <script src="projects.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
