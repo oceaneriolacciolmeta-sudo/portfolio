@@ -44,59 +44,6 @@
     if (e.key === "ArrowRight") lbShow(lbIndex + 1);
   });
 
-  // ---------- Coverflow 3D ----------
-  function coverflow(root, items, onOpen) {
-    if (!items.length) return;
-    root.innerHTML = `
-      <div class="coverflow__stage">${items.map((it, i) => `<div class="cf-item" data-i="${i}">${it.badge ? `<span class="cf-badge">${it.badge}</span>` : ""}${it.html}</div>`).join("")}</div>
-      <div class="coverflow__nav">
-        <button class="arrow" data-d="-1" aria-label="Précédent">←</button>
-        <span class="coverflow__count"></span>
-        <span class="coverflow__dots">${items.map(() => "<i></i>").join("")}</span>
-        <button class="arrow" data-d="1" aria-label="Suivant">→</button>
-      </div>`;
-    const els = [...root.querySelectorAll(".cf-item")], dots = [...root.querySelectorAll(".coverflow__dots i")];
-    const count = $(".coverflow__count", root);
-    let cur = 0;
-
-    function render() {
-      els.forEach((el, i) => {
-        let o = i - cur;
-        const n = els.length; // wrap so neighbours exist on both sides
-        if (o > n / 2) o -= n; if (o < -n / 2) o += n;
-        const a = Math.abs(o);
-        el.style.transform = `translateX(${o * 42}%) translateZ(${-a * 160}px) rotateY(${-Math.sign(o) * Math.min(a, 1) * 40}deg)`;
-        el.style.zIndex = 10 - a;
-        el.style.opacity = a > 1 ? 0 : 1 - a * .15;
-        el.style.pointerEvents = a > 1 ? "none" : "";
-        el.style.filter = a ? `brightness(${1 - a * .12}) saturate(${1 - a * .2})` : "none";
-        el.classList.toggle("is-active", a === 0);
-      });
-      dots.forEach((d, i) => d.classList.toggle("is-active", i === cur));
-      count.textContent = `${String(cur + 1).padStart(2, "0")} / ${String(els.length).padStart(2, "0")}`;
-    }
-    const go = (i) => { cur = (i + els.length) % els.length; render(); };
-
-    root.addEventListener("click", (e) => {
-      const b = e.target.closest("[data-d]");
-      if (b) return go(cur + Number(b.dataset.d));
-      const it = e.target.closest(".cf-item");
-      if (!it || moved) return;
-      const i = Number(it.dataset.i);
-      i === cur ? onOpen(i) : go(i);
-    });
-
-    // swipe / drag
-    let x0 = null, moved = false;
-    root.addEventListener("pointerdown", (e) => { x0 = e.clientX; moved = false; });
-    window.addEventListener("pointerup", (e) => {
-      if (x0 === null) return;
-      const dx = e.clientX - x0; x0 = null;
-      if (Math.abs(dx) > 40) { moved = true; go(cur + (dx < 0 ? 1 : -1)); setTimeout(() => (moved = false), 0); }
-    });
-    render();
-  }
-
   // Miniatures
   const minis = P.miniatures || [];
   const miniItems = minis.map((m, i) => ({ html: media(m.src, m.title, m.client, i), caption: `${m.title} · ${m.client}`, ratio: ratios.miniatures }));
@@ -182,7 +129,7 @@
   // Affiches
   const affs = P.affiches || [];
   const affItems = affs.map((a, i) => ({ html: media(a.src, a.title, a.client, i + 2), caption: `${a.title} · ${a.client}`, ratio: ratios.affiches }));
-  coverflow($('[data-flow="affiches"]'), affItems, (i) => lbOpen(affItems, i));
+  makeSlider($('[data-slider="affiches"]'), affs, { ratio: "9 / 16", label: "Affiche", onOpen: (i) => lbOpen(affItems, i) });
 
   // ---------- Avant / Après (comparison slider) ----------
   const BA = P.avantApres || {}, ba = $("#ba");

@@ -249,6 +249,8 @@ a { color: inherit; text-decoration: none; }
 /* Posts Instagram (carrousels + statiques) : taille réelle d'un post, 4:5 */
 .work > * { min-width: 0; }
 .caro-wrap, .post-slider { width: min(500px, 100%); justify-self: center; }
+.story-slider.mini-slider { width: min(400px, 100%); justify-self: center; }
+.story-slider .mini-slider__thumbs button { height: 96px; }
 .caro-wrap .mini-slider { width: 100%; }
 .post-slider.mini-slider { width: min(500px, 100%); }
 .caro-picker { display: flex; gap: .7rem; margin-top: 1rem; padding: 4px 4px 10px; overflow-x: auto; scrollbar-width: thin; scrollbar-color: var(--amande-300) transparent; }
@@ -262,36 +264,6 @@ a { color: inherit; text-decoration: none; }
   position: absolute; left: 5px; bottom: 5px; padding: .1rem .4rem; border-radius: 999px;
   background: rgba(255, 255, 255, .9); font-size: .62rem; font-weight: 600; color: var(--ink);
 }
-
-/* Coverflow 3D */
-.coverflow { position: relative; min-width: 0; perspective: 1100px; user-select: none; touch-action: pan-y; }
-.coverflow__stage { overflow: hidden; padding: 24px 0; box-sizing: content-box; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
-.coverflow__stage { position: relative; height: var(--h); }
-.coverflow--wide { --w: min(360px, 68vw); --h: calc(var(--w) * 9 / 16); }
-.coverflow--square { --w: min(250px, 56vw); --h: calc(var(--w) * 5 / 4); }
-.coverflow--tall { --w: min(230px, 52vw); --h: calc(var(--w) * 16 / 9); }
-.cf-item {
-  position: absolute; top: 0; left: 50%; width: var(--w); height: 100%; margin-left: calc(var(--w) / -2);
-  border-radius: 14px; overflow: hidden; cursor: pointer; background: var(--amande-200);
-  box-shadow: 0 20px 40px -20px rgba(20, 50, 35, .5);
-  transition: transform .7s var(--ease), opacity .7s var(--ease), filter .7s var(--ease);
-}
-.cf-item img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
-.cf-item.is-active { cursor: zoom-in; }
-.cf-badge {
-  position: absolute; top: 10px; left: 10px; z-index: 2; padding: .2rem .6rem; border-radius: 999px;
-  background: rgba(255, 255, 255, .88); font-size: .7rem; font-weight: 600; color: var(--ink);
-}
-.coverflow__nav { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1.4rem; }
-.coverflow__nav button.arrow {
-  width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--amande-200); background: rgba(255, 255, 255, .85);
-  color: var(--ink); cursor: pointer; transition: background .2s, color .2s;
-}
-.coverflow__nav button.arrow:hover { background: var(--accent); color: var(--white); }
-.coverflow__count { font-family: ui-monospace, monospace; font-size: .7rem; letter-spacing: .1em; color: var(--amande-400); min-width: 54px; }
-.coverflow__dots { display: flex; gap: 5px; }
-.coverflow__dots i { width: 5px; height: 5px; border-radius: 999px; background: var(--amande-300); transition: width .3s, background .3s; }
-.coverflow__dots i.is-active { width: 18px; background: var(--grad); }
 
 /* Placeholders (en attendant tes images) */
 .placeholder {
